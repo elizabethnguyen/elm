@@ -1,0 +1,18 @@
+Elm.MouseSignals1 = Elm.MouseSignals1 || {};
+Elm.MouseSignals1.make = function (_elm) {
+   "use strict";
+   _elm.MouseSignals1 = _elm.MouseSignals1 || {};
+   if (_elm.MouseSignals1.values) return _elm.MouseSignals1.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Graphics$Element = Elm.Graphics.Element.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Mouse = Elm.Mouse.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var main = A2($Signal.map,$Graphics$Element.show,$Mouse.x);
+   return _elm.MouseSignals1.values = {_op: _op,main: main};
+};

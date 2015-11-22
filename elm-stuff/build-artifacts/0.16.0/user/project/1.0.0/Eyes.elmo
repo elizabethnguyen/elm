@@ -1,0 +1,34 @@
+Elm.Eyes = Elm.Eyes || {};
+Elm.Eyes.make = function (_elm) {
+   "use strict";
+   _elm.Eyes = _elm.Eyes || {};
+   if (_elm.Eyes.values) return _elm.Eyes.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $EyesModel = Elm.EyesModel.make(_elm),
+   $EyesView = Elm.EyesView.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Mouse = Elm.Mouse.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Window = Elm.Window.make(_elm);
+   var _op = {};
+   var eyes = F2(function (_p1,_p0) {
+      var _p2 = _p1;
+      var _p5 = _p2._0;
+      var _p4 = _p2._1;
+      var _p3 = _p0;
+      return A2($EyesView.eyesView,
+      {ctor: "_Tuple2",_0: _p5,_1: _p4},
+      A2($EyesModel.pupilsCoordinates,
+      {ctor: "_Tuple2",_0: _p5,_1: _p4},
+      {ctor: "_Tuple2",_0: _p3._0,_1: _p3._1}));
+   });
+   var main = A3($Signal.map2,
+   eyes,
+   $Window.dimensions,
+   $Mouse.position);
+   return _elm.Eyes.values = {_op: _op,main: main,eyes: eyes};
+};
