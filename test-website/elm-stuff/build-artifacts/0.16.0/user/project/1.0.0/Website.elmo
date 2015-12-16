@@ -1,0 +1,45 @@
+Elm.Website = Elm.Website || {};
+Elm.Website.make = function (_elm) {
+   "use strict";
+   _elm.Website = _elm.Website || {};
+   if (_elm.Website.values) return _elm.Website.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Color = Elm.Color.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Graphics$Element = Elm.Graphics.Element.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Text = Elm.Text.make(_elm);
+   var _op = {};
+   var makeWebsite = function (navList) {    return A2($Graphics$Element.flow,$Graphics$Element.right,navList);};
+   var makeNavElements = function (listText) {    return A2($List.intersperse,A2($Graphics$Element.spacer,5,5),listText);};
+   var makeText = function (str) {
+      return A2($Graphics$Element.link,"test",$Graphics$Element.centered(A2($Text.height,60,$Text.bold(A2($Text.color,$Color.blue,$Text.fromString(str))))));
+   };
+   var navtitles = function (n) {
+      var navs = _U.list(["home","blog","about"]);
+      return A2($Maybe.withDefault,"home",$List.head(A2($List.drop,A2($Basics._op["%"],n,$List.length(navs)),navs)));
+   };
+   var counter = function (n) {
+      var counter$ = F2(function (n,acc) {
+         counter$: while (true) if (_U.cmp(n,0) < 0) return acc; else {
+               var _v0 = n - 1,_v1 = A2($List._op["::"],n,acc);
+               n = _v0;
+               acc = _v1;
+               continue counter$;
+            }
+      });
+      return A2(counter$,n,_U.list([]));
+   };
+   var main = makeWebsite(makeNavElements(A2($List.map,makeText,A2($List.map,navtitles,counter(2)))));
+   return _elm.Website.values = {_op: _op
+                                ,counter: counter
+                                ,navtitles: navtitles
+                                ,makeText: makeText
+                                ,makeNavElements: makeNavElements
+                                ,makeWebsite: makeWebsite
+                                ,main: main};
+};
